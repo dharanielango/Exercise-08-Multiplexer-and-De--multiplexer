@@ -1,7 +1,10 @@
 # Exercise-08-Multiplexer-and-De-multiplexer
-### AIM: To implement 4 X1 multiplexer and 1X4 de multiplexer using verilog and validate its outputs
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
+### AIM:
+ To implement 4 X1 multiplexer and 1X4 de multiplexer using verilog and validate its outputs
+### HARDWARE REQUIRED:  –
+ PC, Cyclone II , USB flasher
+### SOFTWARE REQUIRED: 
+  Quartus prime
 ### THEORY 
 
 ## What are Multiplexer and Demultiplexer?
@@ -12,7 +15,7 @@ The multiplexer is a device that has multiple inputs and single line output. The
 
 The single-pole multi-position switch is a simple example of a non-electronic circuit of the multiplexer, and it is widely used in many electronic circuits. The multiplexer is used to perform high-speed switching and is constructed by electronic components.
 
-![image](https://user-images.githubusercontent.com/36288975/170912485-73c395c7-23c0-4e78-a53d-a2f0d07d9662.png)
+   ![image](https://user-images.githubusercontent.com/36288975/170912485-73c395c7-23c0-4e78-a53d-a2f0d07d9662.png)
           Figure-01 multiplexer block diagram 
 
 Multiplexers are capable of handling both analog and digital applications. In analog applications, multiplexers are made up of relays and transistor switches, whereas in digital applications, the multiplexers are built from standard logic gates. When the multiplexer is used for digital applications, it is called a digital multiplexer.
@@ -31,7 +34,8 @@ De-multiplexer is also a device with one input and multiple output lines. It is 
 ![image](https://user-images.githubusercontent.com/36288975/170912606-a30e4b74-1726-4430-b245-2c3c3d9c232d.png)
 Figure 3 De-multiplexer 
 1-4 Demultiplexer
-The 1-to-4 demultiplexer comprises 1- input bit, 4-output bits, and control bits. The 1X4 demultiplexer circuit diagram is shown below.![image](https://user-images.githubusercontent.com/36288975/170912683-00fb746a-1d45-4023-91d1-3a70b841073c.png)
+The 1-to-4 demultiplexer comprises 1- input bit, 4-output bits, and control bits. The 1X4 demultiplexer circuit diagram is shown below.
+![image](https://user-images.githubusercontent.com/36288975/170912683-00fb746a-1d45-4023-91d1-3a70b841073c.png)
 
 ![image](https://user-images.githubusercontent.com/36288975/170912741-7cbd52af-7e0d-4be3-b5c6-6fb9c4eca7c9.png)
 
@@ -47,26 +51,70 @@ If the control input changes to AB = 10, then all the gates are restricted excep
  
  
 ### Procedure
-/* write all the steps invloved */
 
+#### Step 1:
+Open Quartus II and select new project and choose the file location.
+
+#### Step 2:
+Module Declaration. Module should have the file name.
+
+#### Step 3:
+Input-Output Delecaration.
+
+#### Step 4:
+Use wire to define the functionality of logic circuits.
+
+#### Step 5:
+At the end give endmodule.
+
+#### Step 6:
+Run the program and choose RTL viewer to get RTL realization
 
 
 ### PROGRAM 
+```
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+Developed by: DHARANI ELANGO
+RegisterNumber:  212221230021
 */
+MULTIPLEXER:
 
+module MUX(I0,I1,I2,I3,S0,S1,Y);
+input I0,I1,I2,I3,S0,S1;
+output Y;
+wire S0C,S1C;
+not(S0C,S0);
+not(S1C,S1);
+wire P,Q,R,S;
+and(P,S0C,S1C,I0);
+and(Q,S0C,S1,I1);
+and(R,S0,S1C,I2);
+and(S,S0,S1,I3);
+or(Y,P,Q,R,S);
+endmodule
 
+DE MULTIPLEXER:
 
+module demux(y0,y1,y2,y3,s0,s1,i);
+input s0,s1,i;
+output y0,y1,y2,y3;
+wire s0c,s1c;
+nor(s0c,s0);
+nor(s1c,s1);
+and(y0,i,s0c,s1c);
+and(y1,i,s0c,s1);
+and(y2,i,s0,s1c);
+and(y3,i,s0,s1);
+endmodule
 
-
+```
 
 ### RTL LOGIC  
-
-
-
+MULTIPLEXER:
+![OUTPUT](./1.png)
+DE MULTIPLEXER:
+![OUTPUT](./2.png)
 
 
 
@@ -74,15 +122,30 @@ RegisterNumber:
 
 ### TIMING DIGRAMS  
 
+#### MULTIPLEXER:
+When I0=1
+![OUTPUT](./T1.png)
+When I1=1
+![OUTPUT](./T2.png)
+When I2=1
+![OUTPUT](./T3.png)
+When I3=1
+![OUTPUT](./T4.png)
 
+DE MULTIPLEXER:
+![OUTPUT](./D2.png)
 
 
 
 ### TRUTH TABLE 
 
 
-
+MULTIPLEXER:
+![OUTPUT](./TT1.png)
+DE MULTIPLEXER:
+![OUTPUT](./TT2.png)
 
 
 
 ### RESULTS 
+Hence 4x1 Multiplexer and 1x4 Demultiplexer is been implemented and verified using verilog programming and its output are validated.
